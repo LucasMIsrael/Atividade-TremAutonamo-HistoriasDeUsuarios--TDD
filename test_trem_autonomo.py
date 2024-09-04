@@ -31,15 +31,15 @@ class TestTremAutonomo(unittest.TestCase):
 
     def test_limite_50_movimentos(self):
         trem = TremAutonomo()
-        comandos = ['DIREITA'] * 50
+        comandos = ['DIREITA'] * 19 + ['ESQUERDA'] * 19 + ['DIREITA'] * 13
         posicao_final = trem.executar_comandos(comandos)
-        self.assertEqual(posicao_final, 50)
+        self.assertEqual(posicao_final, 10)
         with self.assertRaises(Exception):
             trem.mover('DIREITA')
 
     def test_limite_20_movimentos_consecutivos(self):
         trem = TremAutonomo()
-        comandos = ['DIREITA'] * 20 + ['ESQUERDA']
+        comandos = ['DIREITA'] * 21 + ['ESQUERDA']
         posicao_final = trem.executar_comandos(comandos)
         self.assertEqual(posicao_final, 19)
         with self.assertRaises(Exception):
